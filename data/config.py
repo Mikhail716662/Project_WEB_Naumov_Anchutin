@@ -1,0 +1,1 @@
+XOR_KEY = 'vmekvmepf455___rkmkkjte899'

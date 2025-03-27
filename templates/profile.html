@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center">Профиль</h1>
+    <h3 class="text-center">Добро пожаловать, {{ current_user_name }}</h3>
+    <br>
+    <a href="/" class="btn btn-primary mb-3">На главную</a>
+    <a href="/create_ad" class="btn btn-success mb-3">Создать объявление</a>
+    <a href="/logout" class="btn btn-danger mb-3">Выйти из аккаунта</a>
+    {% if current_user_role == 'admin' %}
+    <a href="/admin" class="btn btn-warning mb-3">Войти в админ панель</a>
+    {% endif %}
+    <h2>Ваши объявления:</h2>
+    {% for id, ad in ads.items() %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">{{ ad.name }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ ad.category }}</h6>
+            <p class="card-text">{{ ad.description }}</p>
+            <p class="card-text">
+                Статус:
+                {% if ad.status == 'approved' %}
+                <span class="text-success">ОПУБЛИКОВАН</span>
+                {% elif ad.status == 'pending' %}
+                <span class="text-warning">ОЖИДАЕТ ОДОБРЕНИЯ</span>
+                {% else %}
+                <span class="text-danger">ОТКЛОНЕН</span>
+                {% endif %}
+            </p>
+            <a href="/delete_ad/{{ id }}" class="btn btn-danger">Удалить</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</body>
+</html>
