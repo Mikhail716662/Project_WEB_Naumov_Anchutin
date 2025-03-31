@@ -1,7 +1,9 @@
+import os
+
 from flask import Flask, render_template, request, redirect, url_for, session
 import uuid
 
-from data.config import XOR_KEY
+from data.config import XOR_KEY, UPLOAD_FOLDER
 from data.functions import load_data, save_data, initialize_json_files, encrypt_password
 
 app = Flask(__name__)
@@ -88,9 +90,10 @@ def profile():
     products = load_data('db/products.json')
     current_user_role = session['user']['role']
     current_user_name = session['user']['username']
+    current_user_avatar = session['user']['avatar']
     user_ads = {k: v for k, v in products.items() if v['user'] == session['user']['username']}
     return render_template('profile.html', ads=user_ads, current_user_role=current_user_role,
-                           current_user_name=current_user_name)
+                           current_user_name=current_user_name, current_user_avatar=current_user_avatar)
 
 
 @app.route('/delete_ad/<ad_id>')
@@ -112,7 +115,13 @@ def register():
         username = request.form['username']
         password = encrypt_password(request.form['password'], XOR_KEY)
         phone = request.form['phone']
-
+        file = request.files['avatar']
+        if file.filename != '':
+            filepath = os.path.join(UPLOAD_FOLDER, f'{username}_avatar.{file.filename.split(".", 1)[1]}')
+            avatar = f'users_avatars/{username}_avatar.{file.filename.split(".", 1)[1]}'
+            file.save(filepath)
+        else:
+            avatar = ''
         users = load_data('db/users.json')
         if username in users:
             return "Пользователь уже существует!"
@@ -120,7 +129,8 @@ def register():
         users[username] = {
             "password": password,
             "phone": phone,
-            "role": "user"
+            "role": "user",
+            "avatar": avatar
         }
         save_data('db/users.json', users)
 
@@ -140,7 +150,8 @@ def login():
             session['user'] = {
                 "username": username,
                 "phone": users[username]['phone'],
-                "role": users[username]['role']
+                "role": users[username]['role'],
+                "avatar": users[username]['avatar']
             }
             return redirect(url_for('profile'))
 

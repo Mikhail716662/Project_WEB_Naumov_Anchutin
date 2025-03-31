@@ -22,17 +22,18 @@ def initialize_json_files():
         with open('data/products.json', 'w', encoding='utf-8') as f:
             json.dump({}, f)
 
-
     if not os.path.exists('db/users.json'):
         with open('db/users.json', 'w', encoding='utf-8') as f:
             json.dump({}, f)
 
+
 def xor_cipher(password, key):
     return ''.join(chr(ord(c) ^ ord(key[i % len(key)])) for i, c in enumerate(password))
+
 
 def encrypt_password(password, key):
     return xor_cipher(password, key)
 
+
 def decrypt_password(encrypted_password, key):
     return xor_cipher(encrypted_password, key)
-
