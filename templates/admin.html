@@ -11,15 +11,17 @@
     <h1 class="text-center">Админ-панель</h1>
     <h3 class="text-center">Добро пожаловать, {{ current_user_name }}</h3>
     <br>
-    <a href="/" class="btn btn-primary mb-3">На главную</a>
-    {% for id, ad in ads.items() %}
-    <div class="card mb-3">
-        <div class="card-body">
-            <h5 class="card-title">{{ ad.name }}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{ ad.category }}</h6>
-            <p class="card-text">{{ ad.description }}</p>
-            <a href="/approve_ad/{{ id }}" class="btn btn-success">Одобрить</a>
-            <a href="/reject_ad/{{ id }}" class="btn btn-danger">Отклонить</a>
+    <div class="text-center">
+        <a href="/" class="btn btn-primary mb-3">На главную</a>
+        {% for id, ad in ads.items() %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ ad.name }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ ad.category }}</h6>
+                <p class="card-text">{{ ad.description }}</p>
+                <a href="/approve_ad/{{ id }}" class="btn btn-success">Одобрить</a>
+                <a href="/reject_ad/{{ id }}" class="btn btn-danger">Отклонить</a>
+            </div>
         </div>
     </div>
     {% endfor %}

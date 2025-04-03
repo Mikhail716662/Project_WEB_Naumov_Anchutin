@@ -12,13 +12,28 @@ app.secret_key = str(uuid.uuid4())
 
 @app.route('/')
 def index():
+    """Главная страница"""
     products = load_data('db/products.json')
     users = load_data('db/users.json')
     return render_template('index.html', products=products, users=users)
 
 
+@app.route('/add_avatar')
+def add_avatar():
+    pass
+
+@app.route('/delete_avatar', methods=['POST'])
+def delete_avatar():
+    current_username = request.form['name']
+    print(current_username)
+    users = load_data('db/users.json')
+    users[current_username]['avatar'] = 'users_avatars/default/default.jpg'
+    save_data('db/users.json', users)
+    return 'Аватар удален успешно'
+
 @app.route('/create_ad', methods=['GET', 'POST'])
 def create_ad():
+    """Страница создания объявления"""
     if 'user' not in session:
         return redirect(url_for('login'))
 
@@ -47,6 +62,7 @@ def create_ad():
 
 @app.route('/admin')
 def admin():
+    """Админ панель"""
     if 'user' not in session or session['user']['role'] != 'admin':
         return redirect(url_for('login'))
 
@@ -58,6 +74,7 @@ def admin():
 
 @app.route('/approve_ad/<ad_id>')
 def approve_ad(ad_id):
+    """Одобрение объявления"""
     if 'user' not in session or session['user']['role'] != 'admin':
         return redirect(url_for('login'))
 
@@ -71,6 +88,7 @@ def approve_ad(ad_id):
 
 @app.route('/reject_ad/<ad_id>')
 def reject_ad(ad_id):
+    """Отклонение объявления"""
     if 'user' not in session or session['user']['role'] != 'admin':
         return redirect(url_for('login'))
 
@@ -84,6 +102,7 @@ def reject_ad(ad_id):
 
 @app.route('/profile')
 def profile():
+    """Страница профиля"""
     if 'user' not in session:
         return redirect(url_for('login'))
 
@@ -98,6 +117,7 @@ def profile():
 
 @app.route('/delete_ad/<ad_id>')
 def delete_ad(ad_id):
+    """Удалить объявление"""
     if 'user' not in session:
         return redirect(url_for('login'))
 
@@ -111,6 +131,7 @@ def delete_ad(ad_id):
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    """Страница регистрации"""
     if request.method == 'POST':
         username = request.form['username']
         password = encrypt_password(request.form['password'], XOR_KEY)
@@ -121,7 +142,7 @@ def register():
             avatar = f'users_avatars/{username}_avatar.{file.filename.split(".", 1)[1]}'
             file.save(filepath)
         else:
-            avatar = ''
+            avatar = 'users_avatars/default/default.jpg'
         users = load_data('db/users.json')
         if username in users:
             return "Пользователь уже существует!"
@@ -141,6 +162,7 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    """Страница входа"""
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -162,6 +184,7 @@ def login():
 
 @app.route('/logout')
 def logout():
+    """Выйти из профиля"""
     session.pop('user', None)
     return redirect(url_for('index'))
 
