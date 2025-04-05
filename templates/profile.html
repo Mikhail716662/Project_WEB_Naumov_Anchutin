@@ -31,11 +31,11 @@
 
     {% elif current_user_avatar == 'users_avatars/default/default.jpg' %}
     <div style="height: 5px;"></div>
-    <form action="/add_avatar" method="GET">
-        <div class="text-center">
+    <div class="text-center">
+         <form action="/add_avatar" method="GET">
             <button type="submit" class="btn btn-primary">Добавить аватар</button>
-        </div>
-    </form>
+        </form>
+    </div>
     {% endif %}
     <h3 class="text-center">Добро пожаловать, {{ current_user_name }}</h3>
     <br>

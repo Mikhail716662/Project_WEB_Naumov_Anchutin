@@ -21,6 +21,12 @@
         "password": "BYQ",
         "phone": "444",
         "role": "user",
-        "avatar": "users_avatars/default/default.jpg"
+        "avatar": "users_avatars/444_avatar.jpg"
+    },
+    "555": {
+        "password": "CXP",
+        "phone": "555",
+        "role": "user",
+        "avatar": "users_avatars/555_avatar.gif"
     }
 }

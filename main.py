@@ -18,16 +18,47 @@ def index():
     return render_template('index.html', products=products, users=users)
 
 
-@app.route('/add_avatar')
+@app.route('/add_avatar', methods=['GET', 'POST'])
 def add_avatar():
-    pass
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        file = request.files['avatar']
+        users = load_data('db/users.json')
+        if username in users and encrypt_password(users[username]['password'], XOR_KEY) == password:
+            filepath = os.path.join(UPLOAD_FOLDER, f'{username}_avatar.{file.filename.split(".", 1)[1]}')
+            avatar = f'users_avatars/{username}_avatar.{file.filename.split(".", 1)[1]}'
+            users = load_data('db/users.json')
+            users[username]['avatar'] = avatar
+            session['user'] = {
+                "username": username,
+                "phone": users[username]['phone'],
+                "role": users[username]['role'],
+                "avatar": avatar
+            }
+            save_data('db/users.json', users)
+            file.save(filepath)
+            return "Аватар успешно изменен!"
+
+        return "Неверный логин или пароль!"
+
+    return render_template('add_avatar.html')
+
+
+
 
 @app.route('/delete_avatar', methods=['POST'])
 def delete_avatar():
-    current_username = request.form['name']
-    print(current_username)
+    username = request.form['name']
     users = load_data('db/users.json')
-    users[current_username]['avatar'] = 'users_avatars/default/default.jpg'
+    os.remove(f"static/{users[username]['avatar']}")
+    users[username]['avatar'] = 'users_avatars/default/default.jpg'
+    session['user'] = {
+        "username": username,
+        "phone": users[username]['phone'],
+        "role": users[username]['role'],
+        "avatar": users[username]['avatar']
+    }
     save_data('db/users.json', users)
     return 'Аватар удален успешно'
 
