@@ -1,10 +1,18 @@
 {
-    "40a0f866-7cc1-4512-810c-f7b241ded5b2": {
-        "category": "Другие товары",
-        "name": "монета ",
-        "description": "монета фальшивая",
+    "831ef07b-3675-48cf-8f19-576d8c624df8": {
+        "category": "Монитор",
+        "name": "енгонолнго",
+        "description": "пимсчм",
+        "status": "approved",
+        "user": "ren",
+        "phone": "5354245352"
+    },
+    "77df4736-17ae-4e6c-a366-d90cce4e4f71": {
+        "category": "Телефон",
+        "name": "енгонолнго",
+        "description": "tuin",
         "status": "pending",
-        "user": "gen",
-        "phone": "tghgncgfghgh"
+        "user": "ren",
+        "phone": "5354245352"
     }
 }

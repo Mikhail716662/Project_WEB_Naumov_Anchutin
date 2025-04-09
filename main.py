@@ -160,6 +160,20 @@ def delete_ad(ad_id):
     return redirect(url_for('profile'))
 
 
+@app.route('/change_ad/<ad_id>')
+def change_ad(ad_id):
+    """Изменение объявления"""
+    if 'user' not in session:
+        return redirect(url_for('login'))
+
+    products = load_data('db/products.json')
+    if ad_id in products and products[ad_id]['user'] == session['user']['username']:
+        del products[ad_id]
+        save_data('db/products.json', products)
+
+    return redirect(url_for('profile'))
+
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     """Страница регистрации"""
