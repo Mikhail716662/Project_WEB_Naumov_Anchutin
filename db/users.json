@@ -1,0 +1,32 @@
+{
+    "111": {
+        "password": "G\\T",
+        "phone": "111",
+        "role": "user",
+        "avatar": "users_avatars/111_avatar.gif"
+    },
+    "222": {
+        "password": "D_W",
+        "phone": "222",
+        "role": "user",
+        "avatar": ""
+    },
+    "333": {
+        "password": "E^V",
+        "phone": "333",
+        "role": "user",
+        "avatar": "users_avatars/default/default.jpg"
+    },
+    "444": {
+        "password": "BYQ",
+        "phone": "444",
+        "role": "user",
+        "avatar": "users_avatars/444_avatar.jpg"
+    },
+    "555": {
+        "password": "CXP",
+        "phone": "555",
+        "role": "user",
+        "avatar": "users_avatars/555_avatar.gif"
+    }
+}

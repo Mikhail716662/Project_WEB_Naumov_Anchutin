@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание объявления</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center">Создание объявления</h1>
+    <form action="/create_ad" method="POST">
+        <div class="form-group">
+            <label for="category">Категория:</label>
+            <select class="form-control" id="category" name="category" required>
+                <option value="Телефон">Телефон</option>
+                <option value="Планшет">Планшет</option>
+                <option value="Ноутбук">Ноутбук</option>
+                <option value="Одежда">Одежда</option>
+                <option value="Принтер">Принтер</option>
+                <option value="Монитор">Монитор</option>
+                <option value="Строительные товары">Строительные товары</option>
+                <option value="Услуги">Услуги</option>
+                <option value="Другие товары">Другие товары</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="name">Название:</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Описание:</label>
+            <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+</div>
+</body>
+</html>

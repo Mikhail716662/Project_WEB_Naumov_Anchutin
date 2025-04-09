@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Доска объявлений</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center my-4">Доска объявлений</h1>
+    <br>
+    <div class="text-center">
+        {% if 'user' in session %}
+        <a href="/profile" class="btn btn-primary mb-3">Профиль</a>
+        {% else %}
+        <a href="/login" class="btn btn-primary mb-3">Войти</a>
+        {% endif %}
+        {% for id, ad in products.items() if ad.status == 'approved' %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ ad.name }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ ad.category }}</h6>
+                <p class="card-text">{{ ad.description }}</p>
+                <p class="card-text"><small class="text-muted">Автор: {{ ad.user }} ({{ ad.phone }})</small></p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</body>
+</html>
