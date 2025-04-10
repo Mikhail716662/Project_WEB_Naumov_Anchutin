@@ -1,0 +1,34 @@
+{
+    "3926cd77-b133-40ee-bf18-959baa557967": {
+        "category": "Ноутбук",
+        "name": "5нонео",
+        "description": "енглегвалкег",
+        "status": "pending",
+        "user": "555",
+        "phone": "555"
+    },
+    "71bd22e1-c458-4dbe-bf70-e78ed77dec6a": {
+        "category": "Монитор",
+        "name": "нглкнглнкл",
+        "description": "нгклкнглгнкел",
+        "status": "pending",
+        "user": "555",
+        "phone": "555"
+    },
+    "1be459ed-17df-4f83-a167-6f95ff66db8b": {
+        "category": "Принтер",
+        "name": "нглнгкел",
+        "description": "гнлкнгл",
+        "status": "pending",
+        "user": "555",
+        "phone": "555"
+    },
+    "375a84a2-a4f5-4dd7-89bc-cfe94f552bba": {
+        "category": "Другие товары",
+        "name": "уеоуенонеоу",
+        "description": "унеоунео",
+        "status": "pending",
+        "user": "555",
+        "phone": "555"
+    }
+}

@@ -20,6 +20,7 @@ def index():
 
 @app.route('/add_avatar', methods=['GET', 'POST'])
 def add_avatar():
+    """Страница загрузки аватара"""
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -49,6 +50,7 @@ def add_avatar():
 
 @app.route('/delete_avatar', methods=['POST'])
 def delete_avatar():
+    """Удаление аватара"""
     username = request.form['name']
     users = load_data('db/users.json')
     os.remove(f"static/{users[username]['avatar']}")
