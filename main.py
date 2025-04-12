@@ -46,8 +46,6 @@ def add_avatar():
     return render_template('add_avatar.html')
 
 
-
-
 @app.route('/delete_avatar', methods=['POST'])
 def delete_avatar():
     """Удаление аватара"""
@@ -63,6 +61,7 @@ def delete_avatar():
     }
     save_data('db/users.json', users)
     return 'Аватар удален успешно'
+
 
 @app.route('/create_ad', methods=['GET', 'POST'])
 def create_ad():
@@ -160,6 +159,35 @@ def delete_ad(ad_id):
         save_data('db/products.json', products)
 
     return redirect(url_for('profile'))
+
+
+@app.route('/edit_ad', methods=['POST', 'GET'])
+def edit_ad():
+    """Изменение объявления"""
+    if request.method == 'POST':
+        if 'user' not in session:
+            return redirect(url_for('login'))
+
+        products = load_data('db/products.json')
+        category = request.form['category']
+        name = request.form['name']
+        ad_id = request.form['id']
+        description = request.form['description']
+
+        new_ad = {
+            "category": category,
+            "name": name,
+            "description": description,
+            "status": "pending",
+            "user": session['user']['username'],
+            "phone": session['user']['phone']
+        }
+
+        products[ad_id] = new_ad
+        save_data('db/products.json', products)
+        return redirect(url_for('profile'))
+    ad_id = request.args.get('id')
+    return render_template('edit_ad.html', ad_id=ad_id)
 
 
 @app.route('/register', methods=['GET', 'POST'])
