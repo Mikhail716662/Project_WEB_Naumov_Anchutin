@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Создание объявления</title>
+    <title>Редактировать объявление</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="container mt-5">
-    <h1 class="text-center">Изменение объявления</h1>
-    <form action="/create_ad" method="POST">
+    <h1 class="text-center">Редактирование объявления</h1>
+    <h2 class="text-center">Заполните данные заново</h2>
+    <form action="/edit_ad" method="POST">
         <div class="form-group">
             <label for="category">Категория:</label>
             <select class="form-control" id="category" name="category" required>
@@ -32,6 +33,7 @@
             <label for="description">Описание:</label>
             <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
         </div>
+        <input type="text" class="form-control" name="id" value="{{ ad_id }}" hidden>
         <button type="submit" class="btn btn-primary">Отправить</button>
     </form>
 </div>
