@@ -2,7 +2,7 @@
 
 ---
 
-2. **Team Lead**: Anchutin Innokenty, Project Devs: Naumov Mikhail, Teacher: Anatolyev Aleksey
+2. **Team Lead**: Anchutin Innokenty, Project Devs: Anchutin Innokenty, Naumov Mikhail, Teacher: Anatolyev Aleksey
    Vladimirovich
 
 ---
@@ -42,7 +42,7 @@
 > - Переменные и константы: 2 константы: одна XOR_KEY с ключом для регистрации пользователя, а вторая UPLOAD_FOLDER
        с путём для сохранения аватарки профиля. Переменных для всех страниц сайта потребуется около 25 для сохранения 
        всей информации, вводимой пользователем
-> - Функции: 6 обычных функций и 12 функций с созданием страниц
+> - Функции: 6 обычных функций и 13 функций с созданием страниц
 > - Классы: нет
 > - Библиотеки: json, os, flask, uuid
 
