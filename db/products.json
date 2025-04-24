@@ -11,8 +11,16 @@
         "category": "Телефон",
         "name": "енгонолнго",
         "description": "tuin",
-        "status": "pending",
+        "status": "approved",
         "user": "ren",
         "phone": "5354245352"
+    },
+    "62022a01-ba65-4c5e-9393-ee925f1d3c75": {
+        "category": "Телефон",
+        "name": "IPhone 16 PRO MAX",
+        "description": "меньше ляма не отдам\r\n",
+        "status": "approved",
+        "user": "gen",
+        "phone": "tghgncgfghgh"
     }
 }
