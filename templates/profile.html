@@ -32,7 +32,7 @@
     {% elif current_user_avatar == 'users_avatars/default/default.jpg' %}
     <div style="height: 5px;"></div>
     <div class="text-center">
-         <form action="/add_avatar" method="GET">
+        <form action="/add_avatar" method="GET">
             <button type="submit" class="btn btn-primary">Добавить аватар</button>
         </form>
     </div>
@@ -63,12 +63,13 @@
                     <span class="text-danger">ОТКЛОНЕН</span>
                     {% endif %}
                 </p>
-                <a href="/change_ad{{ id }}" class="btn btn-primary">Изменить</a>
+                <a href="{{ url_for('edit_ad', id=id) }}" class="btn btn-primary">Редактировать</a>
                 <a href="/delete_ad/{{ id }}" class="btn btn-danger">Удалить</a>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
+
 </div>
 </body>
 </html>

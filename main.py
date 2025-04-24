@@ -20,6 +20,7 @@ def index():
 
 @app.route('/add_avatar', methods=['GET', 'POST'])
 def add_avatar():
+    """Страница загрузки аватара"""
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -45,10 +46,9 @@ def add_avatar():
     return render_template('add_avatar.html')
 
 
-
-
 @app.route('/delete_avatar', methods=['POST'])
 def delete_avatar():
+    """Удаление аватара"""
     username = request.form['name']
     users = load_data('db/users.json')
     os.remove(f"static/{users[username]['avatar']}")
@@ -61,6 +61,7 @@ def delete_avatar():
     }
     save_data('db/users.json', users)
     return 'Аватар удален успешно'
+
 
 @app.route('/create_ad', methods=['GET', 'POST'])
 def create_ad():
@@ -160,18 +161,33 @@ def delete_ad(ad_id):
     return redirect(url_for('profile'))
 
 
-@app.route('/change_ad/<ad_id>')
-def change_ad(ad_id):
+@app.route('/edit_ad', methods=['POST', 'GET'])
+def edit_ad():
     """Изменение объявления"""
-    if 'user' not in session:
-        return redirect(url_for('login'))
+    if request.method == 'POST':
+        if 'user' not in session:
+            return redirect(url_for('login'))
 
-    products = load_data('db/products.json')
-    if ad_id in products and products[ad_id]['user'] == session['user']['username']:
-        del products[ad_id]
+        products = load_data('db/products.json')
+        category = request.form['category']
+        name = request.form['name']
+        ad_id = request.form['id']
+        description = request.form['description']
+
+        new_ad = {
+            "category": category,
+            "name": name,
+            "description": description,
+            "status": "pending",
+            "user": session['user']['username'],
+            "phone": session['user']['phone']
+        }
+
+        products[ad_id] = new_ad
         save_data('db/products.json', products)
-
-    return redirect(url_for('profile'))
+        return redirect(url_for('profile'))
+    ad_id = request.args.get('id')
+    return render_template('edit_ad.html', ad_id=ad_id)
 
 
 @app.route('/register', methods=['GET', 'POST'])
